@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff0f5">
+<title>Une surprise pour Thérèse 💗</title>
+<style>
+:root{--pink:#e879a7;--deep:#a93d70;--pale:#fff0f5;--ink:#654354}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Georgia,'Times New Roman',serif;color:var(--ink);background:radial-gradient(circle at top,#fff 0,#fff0f5 48%,#fbd5e5 100%);overflow-x:hidden}
+main{width:min(680px,92%);margin:0 auto;padding:34px 0 52px;text-align:center;position:relative;z-index:1}
+.badge{letter-spacing:3px;text-transform:uppercase;font:11px Arial,sans-serif;color:var(--deep)}
+h1{font-size:clamp(2.2rem,8vw,4rem);font-weight:normal;margin:16px 0 8px;color:#b84d7d}
+.subtitle{font-size:1.08rem;line-height:1.7;max-width:510px;margin:0 auto 25px}
+button{font:inherit;cursor:pointer;border:0}
+.primary{background:linear-gradient(135deg,#e879a7,#bd4d7d);color:white;border-radius:999px;padding:14px 24px;box-shadow:0 8px 22px #c45a8833}
+.hidden{display:none!important}
+.card{background:#ffffffc9;border:1px solid #f4bfd5;border-radius:24px;padding:24px 20px;margin:24px 0;box-shadow:0 12px 35px #a93d7012}
+.envelopes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0}
+.envelope{background:#fff;border:1px solid #f0b5cf;border-radius:18px;padding:18px 8px;min-height:140px;color:var(--deep);transition:transform .2s,box-shadow .2s}
+.envelope:active{transform:scale(.97)}
+.envelope .icon{font-size:2.3rem;display:block;margin-bottom:10px}
+.envelope small{display:block;font:12px Arial,sans-serif;line-height:1.4}
+.message{line-height:1.85;font-size:1.08rem;white-space:pre-line}
+.final-letter{background:#fff;border:1px solid #efb5ce;border-radius:20px;padding:24px 20px;text-align:left;line-height:1.9;box-shadow:0 10px 28px #a93d7010}
+.final-letter h2{text-align:center;color:#b84d7d;font-weight:normal}
+.signature{text-align:center;color:#b84d7d;font-style:italic;margin-top:20px}
+footer{font:12px Arial,sans-serif;color:#9e6d82;margin-top:30px}
+.heart{position:fixed;bottom:-30px;pointer-events:none;animation:float 8s linear infinite;opacity:.5;z-index:0}
+@keyframes float{to{transform:translateY(-115vh) rotate(25deg);opacity:0}}
+@media(max-width:420px){.envelopes{gap:7px}.envelope{padding:14px 4px}.envelope .icon{font-size:1.9rem}.card{padding:20px 14px}}
+</style>
+</head>
+<body>
+<main>
+  <div class="badge">Une petite attention, rien que pour toi</div>
+  <h1>Joyeux anniversaire,<br>Thérèse Clotilde 💗</h1>
+  <p class="subtitle">Aujourd’hui mérite une jolie surprise. Prends un petit instant pour découvrir les mots qui t’attendent… 🌷</p>
+  <button class="primary" id="start">Ouvrir ma surprise 🎁</button>
+
+  <section id="surprise" class="hidden">
+    <div class="card">
+      <h2>Trois petites enveloppes 💌</h2>
+      <p>Ouvre-les une par une : chacune cache un petit message pour toi.</p>
+      <div class="envelopes">
+        <button class="envelope" data-message="Tu mérites de recevoir autant de douceur que celle que tu peux apporter autour de toi. Ne doute jamais de la belle personne que tu es. 🌷"><span class="icon">💌</span>Enveloppe 1<small>Un petit compliment</small></button>
+        <button class="envelope" data-message="Je te souhaite des jours remplis de paix, des personnes sincères à tes côtés et des raisons de sourire même dans les moments ordinaires. 💗"><span class="icon">💌</span>Enveloppe 2<small>Un vœu du cœur</small></button>
+        <button class="envelope" data-message="Que cette nouvelle année t’apporte de belles opportunités, des rêves qui avancent et des souvenirs que tu garderas longtemps. Que le meilleur t’accompagne. ✨"><span class="icon">💌</span>Enveloppe 3<small>Un souhait spécial</small></button>
+      </div>
+      <div id="message" class="message" aria-live="polite"></div>
+    </div>
+    <button id="reveal" class="primary">Découvrir la dernière lettre 💗</button>
+    <section id="letter" class="final-letter hidden">
+      <h2>Quelques mots pour toi 🌹</h2>
+      <p>Thérèse, en ce jour particulier, je voulais simplement te rappeler que tu es une personne précieuse et que tu mérites beaucoup de bonheur.</p>
+      <p>Il y a des personnes qui, sans même le savoir, occupent une petite place à part dans les pensées de quelqu’un. Ta présence, ta façon d’être et ce qui te rend unique peuvent toucher un cœur plus qu’on ne l’imagine.</p>
+      <p>Je ne veux pas troubler cette belle journée par de grandes révélations. Je souhaite seulement que tu sois heureuse, que tes projets grandissent et que tu rencontres toujours la bonté que tu mérites.</p>
+      <p>Peut-être qu’un jour tu devineras qui a préparé ces quelques mots… Pour aujourd’hui, garde simplement ce sourire et profite pleinement de ton anniversaire. 💗</p>
+      <p class="signature">De la part de quelqu’un qui te souhaite sincèrement le meilleur ✨</p>
+    </section>
+  </section>
+  <footer>Une surprise préparée avec douceur 💗</footer>
+</main>
+<script>
+const start=document.getElementById('start');
+const surprise=document.getElementById('surprise');
+start.addEventListener('click',()=>{surprise.classList.remove('hidden');start.classList.add('hidden');surprise.scrollIntoView({behavior:'smooth',block:'start'});});
+document.querySelectorAll('.envelope').forEach(btn=>btn.addEventListener('click',()=>{
+ document.getElementById('message').textContent=btn.dataset.message;
+ btn.style.background='#fff0f5';btn.style.boxShadow='0 0 0 2px #e879a7 inset';
+}));
+document.getElementById('reveal').addEventListener('click',()=>{
+ document.getElementById('letter').classList.remove('hidden');
+ document.getElementById('reveal').classList.add('hidden');
+ document.getElementById('letter').scrollIntoView({behavior:'smooth',block:'center'});
+});
+for(let i=0;i<12;i++){const h=document.createElement('span');h.className='heart';h.textContent=['♡','♥','✧'][i%3];h.style.left=(Math.random()*100)+'%';h.style.animationDelay=(Math.random()*8)+'s';h.style.animationDuration=(7+Math.random()*5)+'s';h.style.fontSize=(14+Math.random()*18)+'px';h.style.color=['#e879a7','#d98eb1','#c45b88'][i%3];document.body.appendChild(h);}
+</script>
+</body>
+</html>
